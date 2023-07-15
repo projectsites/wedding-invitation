@@ -8,13 +8,12 @@ $(document).ready(function () {
         speed: 800
     });
 
-    // get current url
-    let pathName = window.location.pathname.replace("/", "");
+    // get current url/params
     let params = window.location.search;
 
     // set its current url to logo
     let a = document.getElementById('logo');
-    a.href = `${pathName}${params}`
+    a.href = params;
 
     // audio volume
     let bgAudio = document.getElementById("bg-audio");
