@@ -3,14 +3,29 @@ $(document).ready(function () {
     "use strict";
 
     // Smooth scroll to inner links
-
     $('.inner-link').smoothScroll({
         offset: -59,
         speed: 800
     });
 
-    // Add scrolled class to nav
+    // get current url
+    let pathName = window.location.pathname.replace("/", "");
+    let params = window.location.search;
 
+    // set its current url to logo
+    let a = document.getElementById('logo');
+    a.href = `${pathName}${params}`
+
+    // audio volume
+    let bgAudio = document.getElementById("bg-audio");
+    bgAudio.volume = 0.1;
+
+    // disable right click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+    });
+
+    // Add scrolled class to nav
     $(window).scroll(function () {
         if ($(window).scrollTop() > 0) {
             $('nav').addClass('scrolled');
@@ -20,13 +35,11 @@ $(document).ready(function () {
     });
 
     // Set nav container height for fixed nav
-
     if (!$('nav').hasClass('transparent')) {
         $('.nav-container').css('min-height', $('nav').outerHeight());
     }
 
     // Mobile toggle
-
     $('.mobile-toggle').click(function () {
         $('nav').toggleClass('nav-open');
     });
@@ -37,17 +50,7 @@ $(document).ready(function () {
         }
     });
 
-    // Append .background-image-holder <img>'s as CSS backgrounds
-
-    $('.background-image-holder').each(function () {
-        var imgSrc = $(this).children('img').attr('src');
-        $(this).css('background', 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url("' + imgSrc + '")');
-        $(this).children('img').hide();
-        $(this).css('background-position', '50% 50%');
-    });
-
     // Fade in background images
-
     setTimeout(function () {
         $('.background-image-holder').each(function () {
             $(this).addClass('fadeIn');
@@ -59,7 +62,6 @@ $(document).ready(function () {
 
 
     // Parallax scrolling
-
     if (!(/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
         if (window.requestAnimationFrame) {
             parallaxBackground();
@@ -71,18 +73,74 @@ $(document).ready(function () {
         console.log("parallax 2")
         $('.parallax').removeClass('parallax');
     }
-    
-    // Radio box controls
 
-    $('.radio-holder').click(function() {
+    // audio autoplay when use interact/scroll with the page
+    // function handleScroll() {
+    //     var audio = document.getElementById('bg-audio');
+    //     audio.play(); // Play the audio
+    // }
+    // window.addEventListener('scroll', handleScroll);
+
+    // Radio box controls
+    $('.radio-holder').click(function () {
         $(this).siblings().find('input').prop('checked', false);
         $(this).find('input').prop('checked', true);
         $(this).closest('.radio-group').find('.radio-holder').removeClass('checked');
         $(this).addClass('checked');
     });
 
-    // Contact form code
+    // Guest Reserved functions
+    const reservedLimit = 4;
 
+    // Create urlParams query string
+    var urlParams = new URLSearchParams(window.location.search);
+    // Get value of single parameter
+    let reservedVal = urlParams.get('reserved') ? urlParams.get('reserved') : 0;
+
+    const reserevedMessage = `We have reserved <u>${reservedVal}</u> seats in your name`;
+    const defaultMessage = "Say you'll be there";
+
+    var reservedElement = document.getElementById('reserved');
+    var reservedSentenceVal = (reservedVal > 1 && reservedVal <= reservedLimit) ? reserevedMessage : defaultMessage;
+    reservedElement.innerHTML = reservedSentenceVal
+
+    // Dynamic guest fields
+    // adding field is limited by reservedLimit value
+    if (reservedVal <= reservedLimit) {
+        var formSection = document.getElementsByClassName('form-section');
+        let formChild = formSection[0];
+
+        function add(guestNo) {
+            var newField = document.createElement('input');
+            newField.setAttribute('type', 'text');
+            newField.setAttribute('name', `Guest${guestNo}`);
+            newField.setAttribute('class', 'guest');
+            newField.setAttribute('size', 50);
+            newField.setAttribute('placeholder', `Guest Name ${guestNo}`);
+            formChild.firstElementChild.after(newField)
+        }
+
+        for (let i = 2; i <= reservedVal; i++) {
+            add(i - 1);
+        }
+
+        // Get all appended child elements whose class are guest
+        let childElements = Array.from(formChild.querySelectorAll('input[class="guest"]'));
+
+        // Sort child elements in ascending order based on 'name' attribute
+        childElements.sort((a, b) => {
+            let nameA = a.getAttribute('name').toLowerCase();
+            let nameB = b.getAttribute('name').toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+
+        // Append sorted child elements back to the parent
+        childElements.forEach((element) => {
+            formChild.appendChild(element);
+        });
+    }
+
+    // Contact form code
     $('form.form-email').submit(function (e) {
 
         // return false so form submits through jQuery rather than reloading page.
@@ -224,13 +282,12 @@ function parallaxBackground() {
 };
 
 // Countdown code
-
 (function () {
     const second = 1000,
         minute = second * 60,
         hour = minute * 60,
         day = hour * 24;
-    
+
     const countDown = new Date('12/09/2023').getTime(),
         x = setInterval(function () {
 
@@ -244,7 +301,7 @@ function parallaxBackground() {
 
             //do something later when date is reached
             if (distance < 0) {
-                document.getElementById("headline").innerText = "It's my birthday!";
+                document.getElementById("headline").innerText = "So happy to celebrate this day with you both!";
                 document.getElementById("countdown").style.display = "none";
                 document.getElementById("content").style.display = "block";
                 clearInterval(x);
