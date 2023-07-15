@@ -846,19 +846,6 @@ nav.light.scrolled .line-3 {
     left: 0;
 }
 
-
-/* .countdown-timer {
-    width: 100%;
-    pointer-events: none;
-    cursor: default;
-}
-
-@media all and (min-width: 767px) {
-    .countdown-timer {
-        width: 50% !important;
-    }
-} */
-
 .countdown-timer {
     margin-top: 24px;
 }
@@ -924,7 +911,7 @@ audio {
 }
 
 /*!---------- DETAILS ----------*/
-.details h1 {
+.details h3 {
     margin-bottom: 30px;
     color: var(--color-secondary);
 }
@@ -1392,7 +1379,7 @@ input[type="submit"]:focus {
     margin-bottom: 5px;
 }
 
-.rsvp-2 h1 {
+.rsvp-2 h3 {
     margin-bottom: 30px;
     color: var(--color-secondary);
 }

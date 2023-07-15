@@ -3,14 +3,29 @@ $(document).ready(function () {
     "use strict";
 
     // Smooth scroll to inner links
-
     $('.inner-link').smoothScroll({
         offset: -59,
         speed: 800
     });
 
-    // Add scrolled class to nav
+    // get current url
+    let pathName = window.location.pathname.replace("/", "");
+    let params = window.location.search;
 
+    // set its current url to logo
+    let a = document.getElementById('logo');
+    a.href = `${pathName}${params}`
+
+    // audio volume
+    let bgAudio = document.getElementById("bg-audio");
+    bgAudio.volume = 0.1;
+
+    // disable right click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+    });
+
+    // Add scrolled class to nav
     $(window).scroll(function () {
         if ($(window).scrollTop() > 0) {
             $('nav').addClass('scrolled');
@@ -20,13 +35,11 @@ $(document).ready(function () {
     });
 
     // Set nav container height for fixed nav
-
     if (!$('nav').hasClass('transparent')) {
         $('.nav-container').css('min-height', $('nav').outerHeight());
     }
 
     // Mobile toggle
-
     $('.mobile-toggle').click(function () {
         $('nav').toggleClass('nav-open');
     });
@@ -38,7 +51,6 @@ $(document).ready(function () {
     });
 
     // Fade in background images
-
     setTimeout(function () {
         $('.background-image-holder').each(function () {
             $(this).addClass('fadeIn');
@@ -50,7 +62,6 @@ $(document).ready(function () {
 
 
     // Parallax scrolling
-
     if (!(/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
         if (window.requestAnimationFrame) {
             parallaxBackground();
@@ -63,8 +74,14 @@ $(document).ready(function () {
         $('.parallax').removeClass('parallax');
     }
 
-    // Radio box controls
+    // audio autoplay when use interact/scroll with the page
+    // function handleScroll() {
+    //     var audio = document.getElementById('bg-audio');
+    //     audio.play(); // Play the audio
+    // }
+    // window.addEventListener('scroll', handleScroll);
 
+    // Radio box controls
     $('.radio-holder').click(function () {
         $(this).siblings().find('input').prop('checked', false);
         $(this).find('input').prop('checked', true);
@@ -80,8 +97,11 @@ $(document).ready(function () {
     // Get value of single parameter
     let reservedVal = urlParams.get('reserved') ? urlParams.get('reserved') : 0;
 
+    const reserevedMessage = `We have reserved <u>${reservedVal}</u> seats in your name`;
+    const defaultMessage = "Say you'll be there";
+
     var reservedElement = document.getElementById('reserved');
-    var reservedSentenceVal = (reservedVal > 1 && reservedVal <= reservedLimit) ? `We have reserved ${reservedVal} seat(s) for you` : "Say you'll be there"
+    var reservedSentenceVal = (reservedVal > 1 && reservedVal <= reservedLimit) ? reserevedMessage : defaultMessage;
     reservedElement.innerHTML = reservedSentenceVal
 
     // Dynamic guest fields
@@ -121,7 +141,6 @@ $(document).ready(function () {
     }
 
     // Contact form code
-
     $('form.form-email').submit(function (e) {
 
         // return false so form submits through jQuery rather than reloading page.
@@ -263,7 +282,6 @@ function parallaxBackground() {
 };
 
 // Countdown code
-
 (function () {
     const second = 1000,
         minute = second * 60,
