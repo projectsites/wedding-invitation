@@ -6,10 +6,11 @@ body {
 }
 
 :root {
-    --color-primary: #000080;
+    --color-primary: #073861;
     --color-primary-light: #4b4bf1;
     --color-primary-lighter: #6666b3;
     --color-secondary: #b87333;
+    --color-bg: #fef6eb;
 }
 
 .main-container,
@@ -57,14 +58,6 @@ ul {
 }
 
 /*!---------- MIXINS ----------*/
-.v-align {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-}
-
 .disable-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -116,6 +109,7 @@ section {
     background: #fff;
     overflow: hidden;
     position: relative;
+    background: var(--color-bg);
 }
 
 section .container {
@@ -409,6 +403,14 @@ a:active {
     opacity: 0;
 }
 
+.background-image-holder:before {
+    position: absolute;
+    content: "";
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    width: 100%;
+    height: 100%;
+}
+
 .background-image-holder img {
     display: none;
 }
@@ -422,6 +424,22 @@ a:active {
     top: -30%;
     transition: all 0s ease !important;
     transition: opacity 0.3s ease !important;
+}
+
+@media only screen and (min-width: 769px) {
+    .background-image-holder .web-image {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .background-image-holder .mobile-image {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
 }
 
 /*!---------- SLIDERS ----------*/
@@ -605,7 +623,7 @@ nav.transparent.scrolled {
 }
 
 nav.transparent.light.scrolled {
-    background: var(--color-primary-lighter);
+    background: var(--color-primary);
 }
 
 nav.transparent.light.scrolled .menu li a {
@@ -893,7 +911,7 @@ audio {
 
 .story-1 h2 {
     margin-bottom: 20px;
-    color: var(--color-primary-lighter);
+    color: var(--color-primary);
 }
 
 .story-1 h6 {
@@ -906,6 +924,10 @@ audio {
 }
 
 /*!---------- DETAILS ----------*/
+.details h1 {
+    margin-bottom: 30px;
+    color: var(--color-secondary);
+}
 .details-1 {
     padding-bottom: 60px;
 }
@@ -1171,6 +1193,7 @@ form {
 input {
     -webkit-appearance: none;
     appearance: none;
+    border-radius: 15px;
 }
 
 input[type="submit"]:focus {
@@ -1227,6 +1250,20 @@ input[type="submit"]:focus {
     }
 }
 
+.radio-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem !important;
+}
+
+@media only screen and (max-width: 370px) {
+    .radio-group {
+        flex-direction: column;
+    }
+}
+
 .radio-holder input {
     height: 0;
     width: 0;
@@ -1237,6 +1274,7 @@ input[type="submit"]:focus {
 .radio-holder {
     cursor: pointer;
     display: inline-block;
+    border-radius: 15px;
 }
 
 .radio-holder:hover,
@@ -1290,7 +1328,7 @@ input[type="submit"]:focus {
 
 .rsvp form {
     margin: 0 auto;
-    display: inline-block;
+    display: block;
 }
 
 .rsvp form input[type="text"] {
@@ -1330,6 +1368,7 @@ input[type="submit"]:focus {
     -moz-transition: all 0.3s ease;
     background: none;
     font-size: 12px;
+    border-radius: 15px;
 }
 
 .rsvp form input[type="submit"]:hover {
@@ -1369,8 +1408,11 @@ input[type="submit"]:focus {
 .rsvp-2 .form-wrapper {
     width: 475px;
     margin: 0 auto;
-    background: #fcfcfc;
+    background: whitesmoke;
     padding: 40px 20px 40px 20px;
+    border-radius: 15px;
+    border: .1px solid var(--color-primary);
+    box-shadow: 5px 10px var(--color-primary);
 }
 
 .rsvp-2 .form-section {
@@ -1471,13 +1513,11 @@ input[type="submit"]:focus {
     }
 }
 
-@media all and (max-width: 990px) {
-    .gallery-2 .instafeed li {
-        width: 33.33333%;
-    }
-
-    .gallery-2 .instafeed li:nth-child(n+7) {
-        display: none;
+@media all and (max-width: 1024px) {
+    .gallery-2 h1 {
+        font-size: 80px;
+        line-height: 88px;
+        font-weight: 300;
     }
 }
 
@@ -1490,11 +1530,18 @@ input[type="submit"]:focus {
         margin-bottom: 8px;
     }
 
-    .gallery-2 .instafeed li {
-        width: 50%;
-    }
+}
 
-    .gallery-2 .instafeed li:nth-child(n+5) {
-        display: none;
-    }
+/*!---------- GOOGLE MAP ----------*/
+.google-map {
+    padding-bottom: 50%;
+    position: relative;
+}
+
+.google-map iframe {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
 }

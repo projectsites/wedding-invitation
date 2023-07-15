@@ -37,15 +37,6 @@ $(document).ready(function () {
         }
     });
 
-    // Append .background-image-holder <img>'s as CSS backgrounds
-
-    $('.background-image-holder').each(function () {
-        var imgSrc = $(this).children('img').attr('src');
-        $(this).css('background', 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url("' + imgSrc + '")');
-        $(this).children('img').hide();
-        $(this).css('background-position', '50% 50%');
-    });
-
     // Fade in background images
 
     setTimeout(function () {
@@ -71,15 +62,63 @@ $(document).ready(function () {
         console.log("parallax 2")
         $('.parallax').removeClass('parallax');
     }
-    
+
     // Radio box controls
 
-    $('.radio-holder').click(function() {
+    $('.radio-holder').click(function () {
         $(this).siblings().find('input').prop('checked', false);
         $(this).find('input').prop('checked', true);
         $(this).closest('.radio-group').find('.radio-holder').removeClass('checked');
         $(this).addClass('checked');
     });
+
+    // Guest Reserved functions
+    const reservedLimit = 4;
+
+    // Create urlParams query string
+    var urlParams = new URLSearchParams(window.location.search);
+    // Get value of single parameter
+    let reservedVal = urlParams.get('reserved') ? urlParams.get('reserved') : 0;
+
+    var reservedElement = document.getElementById('reserved');
+    var reservedSentenceVal = (reservedVal > 1 && reservedVal <= reservedLimit) ? `We have reserved ${reservedVal} seat(s) for you` : "Say you'll be there"
+    reservedElement.innerHTML = reservedSentenceVal
+
+    // Dynamic guest fields
+    // adding field is limited by reservedLimit value
+    if (reservedVal <= reservedLimit) {
+        var formSection = document.getElementsByClassName('form-section');
+        let formChild = formSection[0];
+
+        function add(guestNo) {
+            var newField = document.createElement('input');
+            newField.setAttribute('type', 'text');
+            newField.setAttribute('name', `Guest${guestNo}`);
+            newField.setAttribute('class', 'guest');
+            newField.setAttribute('size', 50);
+            newField.setAttribute('placeholder', `Guest Name ${guestNo}`);
+            formChild.firstElementChild.after(newField)
+        }
+
+        for (let i = 2; i <= reservedVal; i++) {
+            add(i - 1);
+        }
+
+        // Get all appended child elements whose class are guest
+        let childElements = Array.from(formChild.querySelectorAll('input[class="guest"]'));
+
+        // Sort child elements in ascending order based on 'name' attribute
+        childElements.sort((a, b) => {
+            let nameA = a.getAttribute('name').toLowerCase();
+            let nameB = b.getAttribute('name').toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+
+        // Append sorted child elements back to the parent
+        childElements.forEach((element) => {
+            formChild.appendChild(element);
+        });
+    }
 
     // Contact form code
 
@@ -230,7 +269,7 @@ function parallaxBackground() {
         minute = second * 60,
         hour = minute * 60,
         day = hour * 24;
-    
+
     const countDown = new Date('12/09/2023').getTime(),
         x = setInterval(function () {
 
@@ -244,7 +283,7 @@ function parallaxBackground() {
 
             //do something later when date is reached
             if (distance < 0) {
-                document.getElementById("headline").innerText = "It's my birthday!";
+                document.getElementById("headline").innerText = "So happy to celebrate this day with you both!";
                 document.getElementById("countdown").style.display = "none";
                 document.getElementById("content").style.display = "block";
                 clearInterval(x);
