@@ -35,6 +35,13 @@
         </nav>
     </div>
 
+    <!-- The Modal -->
+    <div id="rsvp-image-popup" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="rsvp-image">
+        <div id="caption">Thank you for responding!</div>
+    </div>
+
     <div class="main-container">
 
         <a id="home" class="in-page-link"></a>
@@ -47,7 +54,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="text-center col-sm-11">
+                    <div class="text-center col-sm-12">
                         <h6 id="headline">And so the wedding countdown finally begins. See you!</h6>
 
                         <div id="countdown" class="countdown-timer">
@@ -61,10 +68,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="text-center col-sm-11">
+                    <div class="text-center col-sm-12">
                         <h1>RANDY &amp; ALYSSA</h1>
                         <h6>12 . 09 . 2023</h6>
-                        <!-- <h6>Maria Susana's Private Resort and Events San Juan, Taytay Rizal</h6> -->
                     </div>
                 </div>
             </div>
@@ -208,12 +214,16 @@
                         <div class="form-wrapper">
                             <form class="form-email">
                                 <div class="form-section">
-                                    <input type="text" name="Name" class="validate-required" placeholder="Name">
+                                    <input type="text" id="name" name="Name" class="validate-required" placeholder="Name">
 
                                     <!-- <input type="text" name="Email" class="validate-required" placeholder="Email"> -->
 
-                                    <!-- <input type="text" name="Contact" class="validate-required" placeholder="Contact"> -->
-
+                                    <input type="text" id="contact" name="Contact" class="validate-contact"
+                                        maxlength="11" onkeypress="return onlyNumberKey(event)" placeholder="Contact">
+                                    <span class="guest-required-notice">
+                                        If not applicable, please put <strong>N/A</strong> in the guest name field. <br>
+                                        This will help us ensure accurate event planning.
+                                        Thank you!</span>
                                 </div>
 
                                 <div class="radio-group">
@@ -228,7 +238,7 @@
                                 </div>
                                 <input type="submit" value="RSVP">
                                 <div class="form-error">
-                                    <span>Please fill out all fields</span>
+                                    <span></span>
                                 </div>
                                 <div class="form-success">
                                     <span>Thanks for your RSVP!</span>
@@ -254,7 +264,7 @@
         </section>
 
         <!-- BACKGROUND MUSIC -->
-        <audio id="bg-audio" src="audio/Perfect.mp3" controls></audio>
+        <audio id="bg-audio" src="audio/Perfect-Saxo.mp3" controls></audio>
 
     </div>
 

@@ -915,6 +915,7 @@ audio {
     margin-bottom: 30px;
     color: var(--color-secondary);
 }
+
 .details-1 {
     padding-bottom: 60px;
 }
@@ -1367,6 +1368,11 @@ input[type="submit"]:focus {
     background: #fff;
 }
 
+.rsvp .guest-required-notice {
+    display: none;
+    color: red;
+}
+
 .rsvp-1 h1 {
     margin-bottom: 30px;
 }
@@ -1385,7 +1391,7 @@ input[type="submit"]:focus {
 }
 
 .rsvp-2 p:last-of-type {
-    margin-bottom: 60px;
+    margin-bottom: 65px;
 }
 
 .rsvp-2 form input[type="text"] {
@@ -1430,6 +1436,10 @@ input[type="submit"]:focus {
 
 .form-success {
     background: #47c347;
+}
+
+.field-error {
+    border-color: red !important;
 }
 
 @media all and (max-width: 767px) {
@@ -1531,4 +1541,99 @@ input[type="submit"]:focus {
     left: 0;
     top: 0;
     position: absolute;
+}
+
+/*!---------- The Modal (background) ----------*/
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 9999;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Add Animation */
+.modal-content,
+#caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {
+        transform: translate(-50%,-50%) scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%,-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 80%;
+    }
 }

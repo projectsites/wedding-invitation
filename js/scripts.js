@@ -1,3 +1,25 @@
+"use strict";
+
+// get current url/params
+let params = window.location.search;
+// disable/enable right click value
+const disableRightClick = true;
+
+// set its current url to logo
+let a = document.getElementById('logo');
+a.href = params;
+
+// audio volume
+let bgAudio = document.getElementById("bg-audio");
+bgAudio.volume = 0.04;
+
+// disable right click
+if (disableRightClick) {
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+    });
+}
+
 $(document).ready(function () {
 
     "use strict";
@@ -6,22 +28,6 @@ $(document).ready(function () {
     $('.inner-link').smoothScroll({
         offset: -59,
         speed: 800
-    });
-
-    // get current url/params
-    let params = window.location.search;
-
-    // set its current url to logo
-    let a = document.getElementById('logo');
-    a.href = params;
-
-    // audio volume
-    let bgAudio = document.getElementById("bg-audio");
-    bgAudio.volume = 0.1;
-
-    // disable right click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
     });
 
     // Add scrolled class to nav
@@ -59,7 +65,6 @@ $(document).ready(function () {
         });
     }, 300);
 
-
     // Parallax scrolling
     if (!(/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
         if (window.requestAnimationFrame) {
@@ -73,12 +78,12 @@ $(document).ready(function () {
         $('.parallax').removeClass('parallax');
     }
 
-    // audio autoplay when use interact/scroll with the page
-    // function handleScroll() {
-    //     var audio = document.getElementById('bg-audio');
-    //     audio.play(); // Play the audio
-    // }
-    // window.addEventListener('scroll', handleScroll);
+    // audio autoplay when user interact/scroll with the page
+    function handleScroll() {
+        var audio = document.getElementById('bg-audio');
+        audio.play(); // Play the audio
+    }
+    window.addEventListener('scroll', handleScroll);
 
     // Radio box controls
     $('.radio-holder').click(function () {
@@ -113,7 +118,8 @@ $(document).ready(function () {
             var newField = document.createElement('input');
             newField.setAttribute('type', 'text');
             newField.setAttribute('name', `Guest${guestNo}`);
-            newField.setAttribute('class', 'guest');
+            newField.setAttribute('id', 'guest');
+            newField.setAttribute('class', 'validate-guests');
             newField.setAttribute('size', 50);
             newField.setAttribute('placeholder', `Guest Name ${guestNo}`);
             formChild.firstElementChild.after(newField)
@@ -123,8 +129,8 @@ $(document).ready(function () {
             add(i - 1);
         }
 
-        // Get all appended child elements whose class are guest
-        let childElements = Array.from(formChild.querySelectorAll('input[class="guest"]'));
+        // Get all appended child elements whose id are guest
+        let childElements = Array.from(formChild.querySelectorAll('input[id="guest"]'));
 
         // Sort child elements in ascending order based on 'name' attribute
         childElements.sort((a, b) => {
@@ -137,6 +143,19 @@ $(document).ready(function () {
         childElements.forEach((element) => {
             formChild.appendChild(element);
         });
+    }
+
+    // reset form value
+    function resetFormValue() {
+        let name = document.getElementById('name');
+        let contact = document.getElementById('contact');
+        let guests = document.getElementsByClassName('validate-guests');
+
+        name.value = '';
+        contact.value = '';
+        Array.from(guests).forEach(guest => {
+            guest.value = '';
+        })
     }
 
     // Contact form code
@@ -157,8 +176,9 @@ $(document).ready(function () {
 
         error = validateFields(thisForm);
 
-
-        if (error === 1) {
+        if (error === 2) {
+            $(this).closest('form').find('.guest-required-notice').fadeIn(200);
+        } else if (error === 1) {
             $(this).closest('form').find('.form-error').fadeIn(200);
             setTimeout(function () {
                 $(thisForm).find('.form-error').fadeOut(500);
@@ -166,13 +186,26 @@ $(document).ready(function () {
         } else {
             // Hide the error if one was shown
             $(this).closest('form').find('.form-error').fadeOut(200);
+            $(this).closest('form').find('.guest-required-notice').fadeOut(200);
             // Create a new loading spinner while hiding the submit button.
             loadingSpinner = jQuery('<div />').addClass('form-loading').insertAfter($(thisForm).find('input[type="submit"]'));
             $(thisForm).find('input[type="submit"]').hide();
 
+            // Get the modal
+            const popupModal = document.getElementById("rsvp-image-popup");
+            const popupModalImg = document.getElementById("rsvp-image");
+
+            // Get the <span> element that closes the modal
+            const span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                popupModal.style.display = "none";
+            }
+
             jQuery.ajax({
                 type: "POST",
-                url: "https://script.google.com/macros/s/AKfycbz1K3JCqfhcLawpNvq7ouNGlwNXMkgPVooaW3fL_Ewwc7EcvAw1d5v6hfmx-gZl7Z7Y/exec",
+                url: "https://script.google.com/macros/s/AKfycbwZnE0yYuXv38gJ5Hfh3roSytV3RJbBtUv34OpYWTYTFl0BJCuweHh8iD79XxJTLAQX/exec",
                 data: thisForm.serialize(),
                 success: function (response) {
                     $(thisForm).find('.form-loading').remove();
@@ -183,6 +216,14 @@ $(document).ready(function () {
                         setTimeout(function () {
                             thisForm.find('.form-success').fadeOut(500);
                         }, 5000);
+
+                        // display the popup modal image after 1 second
+                        setTimeout(function () {
+                            popupModal.style.display = "block";
+                            popupModalImg.src = "images/rsvp.png";
+                        }, 1000);
+                        // reset the value of input fields
+                        resetFormValue();
                     }
                     // If error text was returned, put the text in the .form-error div and show it.
                     else {
@@ -207,7 +248,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.validate-required, .validate-email').on('blur change', function () {
+    $('.validate-required, .validate-contact, .validate-guests').on('blur change', function () {
         validateFields($(this).closest('form'));
     });
 
@@ -218,29 +259,40 @@ $(document).ready(function () {
     });
 
     function validateFields(form) {
-        var name, error, originalErrorMessage;
+        var name, errorStatus, originalErrorMessage;
 
         $(form).find('.validate-required[type="checkbox"]').each(function () {
             if (!$('[name="' + $(this).attr('name') + '"]:checked').length) {
-                error = 1;
+                errorStatus = 1;
                 name = $(this).attr('name').replace('[]', '');
                 form.find('.form-error').text('Please tick at least one ' + name + ' box.');
             }
         });
 
-        $(form).find('.validate-required').each(function () {
+        $(form).find('.validate-guests').each(function () {
             if ($(this).val() === '') {
                 $(this).addClass('field-error');
-                error = 1;
+                errorStatus = 2;
             } else {
                 $(this).removeClass('field-error');
             }
         });
 
-        $(form).find('.validate-email').each(function () {
-            if (!(/(.+)@(.+){2,}\.(.+){2,}/.test($(this).val()))) {
+        $(form).find('.validate-contact').each(function () {
+            if (!/^\d{11}$/.test($(this).val())) {
+                form.find('.form-error').text('Please input valid contact number.');
                 $(this).addClass('field-error');
-                error = 1;
+                errorStatus = 1;
+            } else {
+                $(this).removeClass('field-error');
+            }
+        });
+
+        $(form).find('.validate-required').each(function () {
+            if ($(this).val() === '') {
+                form.find('.form-error').text('Please fill out required fields');
+                $(this).addClass('field-error');
+                errorStatus = 1;
             } else {
                 $(this).removeClass('field-error');
             }
@@ -250,10 +302,18 @@ $(document).ready(function () {
             form.find('.form-error').fadeOut(1000);
         }
 
-        return error;
+        return errorStatus;
     }
 
 });
+
+function onlyNumberKey(evt) {
+    // Only ASCII character in that range allowed
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+        return false;
+    return true;
+}
 
 function parallaxBackground() {
     $('.parallax').each(function () {
