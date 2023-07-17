@@ -205,7 +205,7 @@ $(document).ready(function () {
 
             jQuery.ajax({
                 type: "POST",
-                url: "https://script.google.com/macros/s/AKfycbwZnE0yYuXv38gJ5Hfh3roSytV3RJbBtUv34OpYWTYTFl0BJCuweHh8iD79XxJTLAQX/exec",
+                url: "https://script.google.com/macros/s/AKfycbzTdVtUdyQCdujTMUa_QBdXdbm9NzpUbSodM4tBuldR5DtpqID8FFz9dHgyGKl4Ntcb/exec",
                 data: thisForm.serialize(),
                 success: function (response) {
                     $(thisForm).find('.form-loading').remove();
