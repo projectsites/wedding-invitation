@@ -1,5 +1,8 @@
 "use strict";
 
+// app script url
+const appScriptUrl = "https://script.google.com/macros/s/AKfycbz6BlKiDnNisHdt4DgXdlRgeI4JGQ1-d0MjoA1MRgdTDTNrMLnC14gklzWmYwNLGi5d/exec";
+
 // get current url/params
 let params = window.location.search;
 // disable/enable right click value
@@ -205,7 +208,7 @@ $(document).ready(function () {
 
             jQuery.ajax({
                 type: "POST",
-                url: "https://script.google.com/macros/s/AKfycbzTdVtUdyQCdujTMUa_QBdXdbm9NzpUbSodM4tBuldR5DtpqID8FFz9dHgyGKl4Ntcb/exec",
+                url: appScriptUrl,
                 data: thisForm.serialize(),
                 success: function (response) {
                     $(thisForm).find('.form-loading').remove();
@@ -230,7 +233,7 @@ $(document).ready(function () {
                         // Keep the current error text in a data attribute on the form
                         thisForm.find('.form-error').attr('original-error', thisForm.find('.form-error').text());
                         // Show the error with the returned error text.
-                        thisForm.find('.form-error').text(response).fadeIn(1000);
+                        thisForm.find('.form-error').text(response.message).fadeIn(1000);
                         thisForm.find('.form-success').fadeOut(1000);
                     }
                 },
