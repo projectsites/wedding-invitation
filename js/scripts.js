@@ -1,7 +1,7 @@
 "use strict";
 
 // app script url
-const appScriptUrl = "https://script.google.com/macros/s/AKfycbz6BlKiDnNisHdt4DgXdlRgeI4JGQ1-d0MjoA1MRgdTDTNrMLnC14gklzWmYwNLGi5d/exec";
+const appScriptUrl = "https://script.google.com/macros/s/AKfycbwGnXHJAfPdljYDHPZXKmce13rz85ExIFkpEZFAOCJ-5jeSOfo5tBorYP9A2LBHhBk/exec";
 
 // get current url/params
 let params = window.location.search;
