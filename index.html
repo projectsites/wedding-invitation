@@ -46,7 +46,7 @@
 
         <a id="home" class="in-page-link"></a>
 
-        <section class="header header-1 fullscreen overlay parallax">
+        <section class="header fullscreen overlay parallax">
             <div class="background-image-holder">
                 <img alt="Background image" class="background-image mobile-image" src="images/mobile-header.png" />
                 <img alt="Background image" class="background-image web-image" src="images/web-header.png" />
@@ -54,10 +54,10 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="text-center col-sm-12">
-                        <h6 id="headline">And so the wedding countdown finally begins. See you!</h6>
+                    <div class="header-countdown-headline col-sm-12">
+                        <h6 class="header-headline" id="header-headline">And so the wedding countdown finally begins. See you!</h6>
 
-                        <div id="countdown" class="countdown-timer">
+                        <div id="countdown" class="header-countdown-timer">
                             <ul>
                                 <li><span id="days"></span>days</li>
                                 <li><span id="hours"></span>Hours</li>
@@ -68,8 +68,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="text-center col-sm-12">
-                        <h1>RANDY &amp; ALYSSA</h1>
+                    <div class="header-text col-sm-12">
+                        <h1 class="header-text-name"><span class="typedText"></span></h1>
                         <h6>December 9, 2023</h6>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
 
         <a id="wedding" class="in-page-link"></a>
 
-        <section class="details details-2 overlay parallax">
+        <section class="details details-1 overlay parallax">
             <div class="background-image-holder">
                 <img alt="Background image" class="background-image mobile-image" src="images/mobile-savethedate.png">
                 <img alt="Background image" class="background-image web-image" src="images/web-savethedate.png">
@@ -122,18 +122,24 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <h1>SAVE THE DATE</h1>
-                        <h4>December 9, 2023</h4>
-                        <h4>Maria Susana's Private Resort and Events San Juan, Taytay Rizal</h4>
+                        <div class="details-1-title">
+                            <h1>SAVE THE DATE</h1>
+                        </div>
+                        <div class="details-1-info">
+                            <h4>December 9, 2023</h4>
+                        </div>
+                        <div class="details-1-info">
+                            <h4>Maria Susana's Private Resort and Events San Juan, Taytay Rizal</h4>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="details details-3">
+        <section class="details details-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center">
+                    <div class="details-2-title col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                         <h3>How to get there?</h3>
                     </div>
                 </div>
@@ -202,7 +208,7 @@
         <section class="rsvp rsvp-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 text-center">
+                    <div class="rsvp-2-headline col-sm-12">
                         <p>We look forward to celebrating with you.</p>
                         <h3 id="reserved"></h3>
                         <p>Please reply on or before <strong>September 30, 2023</strong></p>
@@ -271,6 +277,12 @@
     <script src="js/jquery.min.js"></script>
     <script
         src="https://cdn.statically.io/gh/kswedberg/jquery-smooth-scroll/3948290d/jquery.smooth-scroll.min.js"></script>
+
+    <!-- ----- TYPING JS Link ----- -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <!-- ----- SCROLL REVEAL JS Link----- -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
     <script src="js/scripts.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </body>
