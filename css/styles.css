@@ -775,15 +775,15 @@ nav.light.scrolled .line-3 {
     }
 }
 
-.header-1 {
+.header {
     height: 700px;
 }
 
-.header-1 h1 {
+.header h1 {
     margin-bottom: 24px;
 }
 
-.header-1 h3 {
+.header h3 {
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 9px;
@@ -791,70 +791,20 @@ nav.light.scrolled .line-3 {
 }
 
 @media all and (max-width: 767px) {
-    .header-1 {
+    .header {
         height: 500px;
     }
 }
 
-.header-2 {
-    height: 700px;
-}
-
-.header-2 h1 {
-    margin-bottom: 0;
-}
-
-.header-2 h4 {
-    margin-bottom: 40px;
-}
-
-@media all and (max-width: 767px) {
-    .header-2 {
-        height: 500px;
-    }
-}
-
-.header-3 {
-    height: 650px;
-}
-
-.header-3 h1 {
-    margin-bottom: 20px;
-}
-
-.header-3:before {
-    opacity: .6;
-}
-
-.header-4 .slides li {
-    height: 650px;
-}
-
-.header-4.fullscreen .slides li {
-    height: 100vh;
-}
-
-.header-4.overlay .background-image-holder:before {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    background: #000000;
-    opacity: 0.1;
-    top: 0;
-    left: 0;
-}
-
-.countdown-timer {
+.header-countdown-timer {
     margin-top: 24px;
 }
 
-.countdown-timer ul {
+.header-countdown-timer ul {
     padding: 0;
 }
 
-.countdown-timer li {
+.header-countdown-timer li {
     display: inline-block;
     font-size: 1em;
     padding: 1em;
@@ -862,11 +812,11 @@ nav.light.scrolled .line-3 {
     border-right: 1px solid #bebebe;
 }
 
-.countdown-timer li:last-child {
+.header-countdown-timer li:last-child {
     border-right: none;
 }
 
-.countdown-timer li span {
+.header-countdown-timer li span {
     display: block;
     font-size: 4.5rem;
     font-family: 'Lato', "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -874,8 +824,23 @@ nav.light.scrolled .line-3 {
 }
 
 @media all and (max-width: 767px) {
-    .countdown-timer li {
+    .header-countdown-timer li {
         font-size: .5em;
+    }
+}
+
+.header-countdown-headline {
+    animation: imgFloat 7s ease-in-out infinite;
+    text-align: center;
+}
+
+.header-text {
+    text-align: center;
+}
+
+@keyframes imgFloat {
+    50%{
+        transform: translateY(10px);
     }
 }
 
@@ -917,42 +882,6 @@ audio {
 }
 
 .details-1 {
-    padding-bottom: 60px;
-}
-
-.details-1 h2 {
-    margin-bottom: 30px;
-}
-
-.details-1 h6 {
-    color: var(--color-primary);
-    margin-bottom: 60px;
-}
-
-.details-1 .feature {
-    margin-bottom: 60px;
-}
-
-.details-1 .feature h6 {
-    color: var(--color-primary);
-}
-
-.details-1 .feature h6,
-.details-1 .feature h4 {
-    margin-bottom: 15px;
-}
-
-.details-1 p:last-of-type {
-    margin-bottom: 30px;
-}
-
-@media all and (max-width: 767px) {
-    .details-1 .feature br {
-        display: block;
-    }
-}
-
-.details-2 {
     background: var(--color-primary);
     padding: 180px 0;
     transition: all 0.3s ease;
@@ -960,37 +889,37 @@ audio {
     -moz-transition: all 0.3s ease;
 }
 
-.details-2 h1,
-.details-2 h2,
-.details-2 h3,
-.details-2 h4,
-.details-2 h5,
-.details-2 h6 {
+.details-1 h1,
+.details-1 h2,
+.details-1 h3,
+.details-1 h4,
+.details-1 h5,
+.details-1 h6 {
     color: #ffffff;
 }
 
-.details-2 p,
-.details-2 span,
-.details-2 li {
+.details-1 p,
+.details-1 span,
+.details-1 li {
     color: #ffffff;
 }
 
-.details-2.light h1,
-.details-2.light h2,
-.details-2.light h3,
-.details-2.light h4,
-.details-2.light h5,
-.details-2.light h6 {
+.details-1.light h1,
+.details-1.light h2,
+.details-1.light h3,
+.details-1.light h4,
+.details-1.light h5,
+.details-1.light h6 {
     color: #222222;
 }
 
-.details-2.light p,
-.details-2.light span,
-.details-2.light li {
+.details-1.light p,
+.details-1.light span,
+.details-1.light li {
     color: #444444;
 }
 
-.details-2 h1 {
+.details-1 h1 {
     font-size: 100px;
     line-height: 108px;
     font-weight: 100;
@@ -998,7 +927,7 @@ audio {
 }
 
 @media all and (max-width: 1024px) {
-    .details-2 h1 {
+    .details-1 h1 {
         font-size: 80px;
         line-height: 88px;
         font-weight: 300;
@@ -1006,105 +935,14 @@ audio {
 }
 
 @media all and (max-width: 767px) {
-    .details-2 h1 {
+    .details-1 h1 {
         font-size: 64px;
         line-height: 72px;
     }
 }
 
-.details-3 {
-    padding-bottom: 60px;
-}
-
-.details-3 .row:nth-of-type(1) p:last-of-type {
-    margin-bottom: 60px;
-}
-
-.details-3 h5 {
-    color: var(--color-primary);
-    margin-bottom: 20px;
-}
-
-.details-3 .feature {
-    margin-bottom: 60px;
-}
-
-@media all and (max-width: 767px) {
-    .details-3 .feature br {
-        display: block;
-    }
-}
-
-.details-4 .feature {
-    width: 475px;
-    background: rgba(252, 252, 252, 0.9);
-    padding: 80px 0;
+.details-2-title {
     text-align: center;
-    margin: 0 auto;
-}
-
-.details-4 h2 {
-    margin-bottom: 40px;
-}
-
-.details-4 h5 {
-    color: var(--color-primary);
-    margin-bottom: 60px;
-}
-
-.details-4 .feature {
-    margin-bottom: 60px;
-}
-
-.details-4 .feature h6 {
-    color: var(--color-primary);
-}
-
-.details-4 .feature h6,
-.details-4 .feature h4 {
-    margin-bottom: 15px;
-}
-
-.details-4 p:last-of-type {
-    margin-bottom: 30px;
-}
-
-@media all and (max-width: 767px) {
-    .details-4 .feature {
-        width: 100%;
-    }
-
-    .details-4 .feature br {
-        display: block;
-    }
-}
-
-.details-5 img {
-    margin-bottom: 30px;
-    max-width: 340px;
-}
-
-.details-5 h2 {
-    margin-bottom: 30px;
-}
-
-.details-5 p:last-of-type {
-    margin-bottom: 30px;
-}
-
-@media all and (max-width: 767px) {
-    .details-5 img {
-        margin-bottom: 8px;
-        max-width: 100%;
-    }
-
-    .details-5 img:last-child {
-        margin-bottom: 30px;
-    }
-
-    .details-5 br {
-        display: block;
-    }
 }
 
 /*!---------- ACCOMMODATION ----------*/
@@ -1373,18 +1211,6 @@ input[type="submit"]:focus {
     color: red;
 }
 
-.rsvp-1 h1 {
-    margin-bottom: 30px;
-}
-
-.rsvp-1 p:last-of-type {
-    margin-bottom: 60px;
-}
-
-.rsvp-1 form input[type="text"] {
-    margin-bottom: 5px;
-}
-
 .rsvp-2 h3 {
     margin-bottom: 30px;
     color: var(--color-secondary);
@@ -1415,6 +1241,10 @@ input[type="submit"]:focus {
 .rsvp-2 h6 {
     color: #777;
     margin-bottom: 20px;
+}
+
+.rsvp-2-headline {
+    text-align: center;
 }
 
 .form-error,

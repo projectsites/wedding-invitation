@@ -33,6 +33,57 @@ $(document).ready(function () {
         speed: 800
     });
 
+    /* ----- TYPING EFFECT ----- */
+    let typingEffect = new Typed(".typedText", {
+        strings: ["Randy &amp; Alyssa"],
+        loop: true,
+        typeSpeed: 100,
+        backSpeed: 80,
+        backDelay: 2000
+    })
+
+    // SCROLL REVEAL ANIMATION
+    const srTop = ScrollReveal({
+        origin: 'top',
+        distance: '80px',
+        duration: 2000,
+        reset: true
+    });
+
+    srTop.reveal('.header', {});
+    srTop.reveal('.header-headline', { delay: 100 });
+    srTop.reveal('.header-countdown-timer', { delay: 200 });
+    srTop.reveal('.header-text', { delay: 300 });
+
+    srTop.reveal('.details', { interval: 500 });
+
+    srTop.reveal('.rsvp-2-headline', { delay: 100 });
+
+    srTop.reveal('.gallery', { delay: 200 });
+
+    const srLeft = ScrollReveal({
+        origin: 'left',
+        distance: '80px',
+        duration: 2000,
+        reset: true
+    });
+
+    srLeft.reveal('.details-2-title', { delay: 200 });
+    srLeft.reveal('.details-1-title', { delay: 100 });
+
+    const srRight = ScrollReveal({
+        origin: 'right',
+        distance: '80px',
+        duration: 2000,
+        reset: true
+    });
+
+    srRight.reveal('.details-1-info', { interval: 200 });
+
+    srRight.reveal('.google-map', { delay: 300 });
+    
+    srRight.reveal('.form-wrapper', { delay: 200 });
+
     // Add scrolled class to nav
     $(window).scroll(function () {
         if ($(window).scrollTop() > 0) {
