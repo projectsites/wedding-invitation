@@ -839,7 +839,7 @@ nav.light.scrolled .line-3 {
 }
 
 @keyframes imgFloat {
-    50%{
+    50% {
         transform: translateY(10px);
     }
 }
@@ -943,6 +943,11 @@ audio {
 
 .details-2-title {
     text-align: center;
+    margin-top: 3rem !important;
+}
+
+.image-radius {
+    border-radius: 15px;
 }
 
 /*!---------- ACCOMMODATION ----------*/
@@ -1433,12 +1438,12 @@ input[type="submit"]:focus {
 
 @keyframes zoom {
     from {
-        transform: translate(-50%,-50%) scale(0);
+        transform: translate(-50%, -50%) scale(0);
         opacity: 0;
     }
 
     to {
-        transform: translate(-50%,-50%) scale(1);
+        transform: translate(-50%, -50%) scale(1);
         opacity: 1;
     }
 }
@@ -1466,4 +1471,98 @@ input[type="submit"]:focus {
     .modal-content {
         width: 80%;
     }
+}
+
+/* FAQS CONTENT */
+
+.faqs-container {
+    margin: 10% 10% 10% 10%;
+}
+
+.faqs-title {
+    margin-bottom: 30px;
+    color: var(--color-secondary);
+    text-align: center;
+}
+
+.faq-content {
+    padding: 9px 25px 3rem;
+}
+
+.faq-content h1 {
+    font-size: 32px;
+    text-align: center;
+    color: var(--primary-dark-color);
+}
+
+.faq-accordion {
+    padding: 8px 0;
+    border-bottom: 1px solid hsl(240, 5%, 91%);
+}
+
+
+/* FAQ card: main title */
+/*================================================*/
+
+/* checkbox tgg-title*/
+input.tgg-title {
+    appearance: unset;
+    all: unset;
+}
+
+.faq-accordion-title label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-accordion-title h2 {
+    font-size: 12px
+        /*var(--font-size)*/
+    ;
+    font-weight: 400;
+    color: var(--neutral-dark-color);
+}
+
+.faq-accordion-title span {
+    margin-left: auto;
+    transition: transform .4s ease-in-out;
+}
+
+
+/* FAQ card: main content */
+/*================================================*/
+
+.faq-accordion-content {
+    color: var(--neutral-soft-color);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .4s ease-in-out;
+}
+
+
+/* Effects */
+/*================================================*/
+
+/* main title, accordion title effects */
+
+.faq-accordion-title:hover h2 {
+    color: var(--primary-soft-color)
+}
+
+/* onclick "" */
+.faq-accordion .tgg-title:checked+div>label>h2 {
+    font-weight: 700;
+}
+
+.faq-accordion .tgg-title:checked+div>label>span {
+    will-change: transform;
+    transform: rotate(180deg);
+}
+
+/* main content, acordion text effect */
+
+.faq-accordion .tgg-title:checked~.faq-accordion-content {
+    will-change: max-height;
+    max-height: 80px;
 }
