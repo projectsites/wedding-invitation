@@ -1,12 +1,13 @@
 "use strict";
 
 // app script url
-const appScriptUrl = "https://script.google.com/macros/s/AKfycbwmV5-PLxo-kmIQYb5Ycq4OWUwa2RQUb8aXg-rqT6ATDJrYa2fDG5Egs3g9sLgzjSni/exec";
+// const appScriptUrl = "https://script.google.com/macros/s/AKfycbwmV5-PLxo-kmIQYb5Ycq4OWUwa2RQUb8aXg-rqT6ATDJrYa2fDG5Egs3g9sLgzjSni/exec";
+const appScriptUrl = "https://script.google.com/macros/s/AKfycbxDHpcMStxHeYSo2dbYMC2k017wlXRrrcQbn4-CqyQdEvqhhvOYCU-_Dz_42jGH5Ias/exec";
 
 // get current url/params
 let params = window.location.search;
 // disable/enable right click value
-const disableRightClick = true;
+const disableRightClick = false;
 
 // set its current url to logo
 let a = document.getElementById('logo');
@@ -160,7 +161,7 @@ $(document).ready(function () {
     // Get value of single parameter
     let reservedVal = urlParams.get('reserved') ? urlParams.get('reserved') : 0;
 
-    const reserevedMessage = `We have reserved <u>${reservedVal}</u> seats in your name`;
+    const reserevedMessage = `We have reserved <u>${reservedVal}</u> seats for you.`;
     const defaultMessage = "Say you'll be there";
 
     var reservedElement = document.getElementById('reserved');
@@ -279,7 +280,7 @@ $(document).ready(function () {
                         // display the popup modal image after 1 second
                         setTimeout(function () {
                             popupModal.style.display = "block";
-                            popupModalImg.src = "images/rsvp.png";
+                            popupModalImg.src = "images/rsvp.jpg";
                         }, 1000);
                         // reset the value of input fields
                         resetFormValue();
