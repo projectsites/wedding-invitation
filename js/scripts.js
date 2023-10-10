@@ -34,13 +34,13 @@ $(document).ready(function () {
     });
 
     /* ----- TYPING EFFECT ----- */
-    let typingEffect = new Typed(".typedText", {
-        strings: ["Randy &amp; Alyssa"],
-        loop: true,
-        typeSpeed: 100,
-        backSpeed: 80,
-        backDelay: 2000
-    })
+    // let typingEffect = new Typed(".typedText", {
+    //     strings: ["Randy &amp; Alyssa"],
+    //     loop: true,
+    //     typeSpeed: 100,
+    //     backSpeed: 80,
+    //     backDelay: 2000
+    // })
 
     // SCROLL REVEAL ANIMATION
     const srTop = ScrollReveal({
@@ -55,7 +55,7 @@ $(document).ready(function () {
     srTop.reveal('.header-countdown-timer', { delay: 200 });
     srTop.reveal('.header-text', { delay: 300 });
 
-    srTop.reveal('.details', { interval: 500 });
+    srTop.reveal('.details-2-first-pic', { interval: 500 });
 
     srTop.reveal('.rsvp-2-headline', { delay: 100 });
 
@@ -68,6 +68,8 @@ $(document).ready(function () {
         reset: true
     });
 
+    srLeft.reveal('.details-2-entourage', { interval: 500 });
+
     srLeft.reveal('.details-2-title', { delay: 200 });
     srLeft.reveal('.details-1-title', { delay: 100 });
 
@@ -78,11 +80,14 @@ $(document).ready(function () {
         reset: true
     });
 
+
     srRight.reveal('.details-1-info', { interval: 200 });
 
     srRight.reveal('.google-map', { delay: 300 });
     
     srRight.reveal('.form-wrapper', { delay: 200 });
+
+    srRight.reveal('.details-2-details', { interval: 200 });
 
     // Add scrolled class to nav
     $(window).scroll(function () {

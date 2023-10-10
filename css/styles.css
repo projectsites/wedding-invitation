@@ -943,6 +943,11 @@ audio {
 
 .details-2-title {
     text-align: center;
+    margin-top: 3rem !important;
+}
+
+.image-radius {
+    border-radius: 15px;
 }
 
 /*!---------- ACCOMMODATION ----------*/
