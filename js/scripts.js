@@ -7,7 +7,7 @@ const appScriptUrl = "https://script.google.com/macros/s/AKfycbxDHpcMStxHeYSo2db
 // get current url/params
 let params = window.location.search;
 // disable/enable right click value
-const disableRightClick = false;
+const disableRightClick = true;
 
 // set its current url to logo
 let a = document.getElementById('logo');
@@ -33,6 +33,23 @@ $(document).ready(function () {
         offset: -59,
         speed: 800
     });
+    
+    // welcome popup message
+    const welcomePopupModal = document.getElementById("welcome-popup");
+    const welcomePopupImage = document.getElementById("welcome-image")
+
+    welcomePopupModal.style.display = "block";
+    welcomePopupImage.src = "images/welcome-image.png";
+    welcomePopupImage.style.borderRadius = "15px";
+
+    // Get the <span> element that closes the modal
+    const span = document.getElementsByClassName("welcome-popup-close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        welcomePopupModal.style.display = "none";
+        welcomePopupImage.src = "";
+    }
 
     /* ----- TYPING EFFECT ----- */
     // let typingEffect = new Typed(".typedText", {
