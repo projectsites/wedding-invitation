@@ -1380,49 +1380,29 @@ input[type="submit"]:focus {
 
 /*!---------- The Modal (background) ----------*/
 .modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
     /* Stay in place */
-    z-index: 9999;
+    position: fixed;
     /* Sit on top */
-    padding-top: 100px;
+    z-index: 9999;
     /* Location of the box */
+    padding-top: 100px;
     left: 0;
     top: 0;
-    width: 100%;
     /* Full width */
-    height: 100%;
+    width: 100%;
     /* Full height */
-    overflow: auto;
+    height: 100%;
     /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
+    overflow: auto;
     /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgb(0, 0, 0);
     /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
-.welcome-modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 9999;
-    /* Sit on top */
-    padding-top: 100px;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: transparent
+.welcome {
     /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Modal Content (image) */
@@ -1482,6 +1462,13 @@ input[type="submit"]:focus {
     transition: 0.3s;
 }
 
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .welcome-popup-close {
     position: absolute;
     top: 100px;
@@ -1492,8 +1479,8 @@ input[type="submit"]:focus {
     transition: 0.3s;
 }
 
-.close:hover,
-.close:focus {
+.welcome-popup-close:hover,
+.welcome-popup-close:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;

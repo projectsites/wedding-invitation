@@ -1,8 +1,7 @@
 "use strict";
 
 // app script url
-// const appScriptUrl = "https://script.google.com/macros/s/AKfycbwmV5-PLxo-kmIQYb5Ycq4OWUwa2RQUb8aXg-rqT6ATDJrYa2fDG5Egs3g9sLgzjSni/exec";
-const appScriptUrl = "https://script.google.com/macros/s/AKfycbxDHpcMStxHeYSo2dbYMC2k017wlXRrrcQbn4-CqyQdEvqhhvOYCU-_Dz_42jGH5Ias/exec";
+const appScriptUrl = "https://script.google.com/macros/s/AKfycbxmYJnYWcICRuF_SR-qkbnZqfIIgwXrEUPVHhlbtMBxB9MKYetU9Mp01r4MmZ3a-D0/exec";
 
 // get current url/params
 let params = window.location.search;
@@ -33,22 +32,39 @@ $(document).ready(function () {
         offset: -59,
         speed: 800
     });
-    
+
     // welcome popup message
     const welcomePopupModal = document.getElementById("welcome-popup");
     const welcomePopupImage = document.getElementById("welcome-image")
 
-    welcomePopupModal.style.display = "block";
     welcomePopupImage.src = "images/welcome-image.png";
     welcomePopupImage.style.borderRadius = "15px";
 
     // Get the <span> element that closes the modal
     const span = document.getElementsByClassName("welcome-popup-close")[0];
 
+    const body = document.querySelector("body");
+    body.style.overflow = "hidden";
+
+    function closeBtnModal(modal) {
+        modal.classList.remove("show");
+        modal.classList.toggle("hidden");
+        modal.src = "";
+
+        // Enable scroll 
+        body.style.overflow = "auto";
+    }
+
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
-        welcomePopupModal.style.display = "none";
-        welcomePopupImage.src = "";
+        closeBtnModal(welcomePopupModal);
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == welcomePopupModal) {
+            closeBtnModal(welcomePopupModal);
+        }
     }
 
     /* ----- TYPING EFFECT ----- */
@@ -102,7 +118,7 @@ $(document).ready(function () {
     srRight.reveal('.details-1-info', { interval: 200 });
 
     srRight.reveal('.google-map', { delay: 300 });
-    
+
     srRight.reveal('.form-wrapper', { delay: 200 });
 
     srRight.reveal('.details-2-details', { interval: 200 });
@@ -277,7 +293,7 @@ $(document).ready(function () {
 
             // When the user clicks on <span> (x), close the modal
             span.onclick = function () {
-                popupModal.style.display = "none";
+                closeBtnModal(popupModal);
             }
 
             jQuery.ajax({
@@ -296,7 +312,9 @@ $(document).ready(function () {
 
                         // display the popup modal image after 1 second
                         setTimeout(function () {
-                            popupModal.style.display = "block";
+                            popupModal.classList.toggle("show");
+                            popupModal.classList.remove("hidden");
+                            body.style.overflow = "hidden";
                             popupModalImg.src = "images/rsvp.jpg";
                         }, 1000);
                         // reset the value of input fields
